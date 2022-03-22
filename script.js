@@ -1,22 +1,20 @@
 // Задание 1
 
-function concatStrings(string, separator = '') {
+function concatStrings(str, separator = '') {
   return function (arg) {
     if (typeof arg !== 'string') {
-      return string;
+      return str;
     }
 
     if (typeof separator !== 'string') {
       separator = '';
     }
 
-    let concatenatedString = string + separator + arg;
+    let concatString = str + separator + arg;
 
-    return concatStrings(concatenatedString, separator);
+    return concatStrings(concatString, separator);
   }
 }
-
-console.log(concatStrings('first', null)('second')())
 
 // Задание 2 
 
@@ -27,8 +25,8 @@ class Calculator {
     if (isValid) {
       throw new Error('Ошибка!')      
     } 
-    this.x = x,
-    this.y = y
+    this.x = x;
+    this.y = y;
     this.setX = this.setX.bind(this);
     this.setY = this.setY.bind(this);
     this.logSum = this.logSum.bind(this);
@@ -73,12 +71,3 @@ class Calculator {
   }
 
 }
-
-const calculator = new Calculator(12, 3);
-calculator.logSum(); // 15
-calculator.logDiv(); // 4
-calculator.setX(15);
-calculator.logDiv(); // 5
-const logCalculatorDiv = calculator.logDiv;
-logCalculatorDiv(); // 5
-// calculator.setY(444n); // Ошибка!
