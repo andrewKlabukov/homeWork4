@@ -75,4 +75,3 @@ class Calculator {
     console.log(this.x / this.y);
   }
 }
-
