@@ -1,18 +1,22 @@
 // Задание 1
 
-function concatStrings(str, separator = '') {
-  return function (arg) {
-    if (typeof arg !== 'string') {
-      return str;
+function concatStrings(x, separator) {
+  if (typeof x !== 'string') {
+    return;
+  }
+  
+  return function(y) {
+    if(typeof y !== 'string') {
+      return x;
     }
 
-    if (typeof separator !== 'string') {
-      separator = '';
+    let res = x + y;
+
+    if (typeof separator === 'string' && y !== '') {
+      res = x + separator + y; 
     }
 
-    let concatString = str + separator + arg;
-
-    return concatStrings(concatString, separator);
+    return concatStrings(res, separator);
   }
 }
 
@@ -23,7 +27,7 @@ class Calculator {
     const isValid = typeof x !== 'number' || typeof y !== 'number' || !isFinite(x) || !isFinite(y);
 
     if (isValid) {
-      throw new Error('Ошибка!')      
+      throw new Error('Ошибка! Не поддерживаемые значения!')      
     } 
     this.x = x;
     this.y = y;
@@ -36,16 +40,17 @@ class Calculator {
   } 
 
   setX(num){
-    if (typeof num !== 'number') {
-      throw new Error('Ошибка!')
+    if (typeof num !== 'number' || !isFinite(num)) {
+      throw new Error('Ошибка! Не поддерживаемое значение!')
     }
     
     this.x = num;       
   }
 
   setY(num){
-    if (typeof num !== 'number') {
-      throw new Error('Ошибка!')
+    const isValid = typeof num !== 'number' || !isFinite(unm) || num === 0;
+    if (isValid) {
+      throw new Error('Ошибка!  Не поддерживаемое значение!')
     }
     
     this.y = num;  
@@ -65,9 +70,8 @@ class Calculator {
 
   logDiv() {
     if (this.y === 0) {
-      throw new Error('Ошибка!')
+      throw new Error('Ошибка! На ноль делить нельзя!')
     }
     console.log(this.x / this.y);
   }
-
 }
