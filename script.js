@@ -1,19 +1,19 @@
 // Задание 1
 
-function concatStrings(x, separator) {
-  if (typeof x !== 'string') {
+function concatStrings(str, separator) {
+  if (typeof str !== 'string') {
     return;
   }
   
-  return function(y) {
-    if(typeof y !== 'string') {
-      return x;
+  return function(args) {
+    if(typeof args !== 'string') {
+      return str;
     }
+    
+    let res = str + args;
 
-    let res = x + y;
-
-    if (typeof separator === 'string' && y !== '') {
-      res = x + separator + y; 
+    if (typeof separator === 'string' && args !== '') {
+      res = str + separator + args; 
     }
 
     return concatStrings(res, separator);
@@ -75,3 +75,4 @@ class Calculator {
     console.log(this.x / this.y);
   }
 }
+
